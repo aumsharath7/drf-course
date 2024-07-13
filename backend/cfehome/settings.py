@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'api',
     'products',
-
 ]
 
 MIDDLEWARE = [
@@ -125,3 +125,36 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+       'rest_framework.authentication.SessionAuthentication',
+       'api.authentication.TokenAuthentication'
+    ],
+
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly', #GET
+       
+    ]
+}
+
+
+# auth_classes =[
+#     'rest_framework.authentication.SessionAuthentication',
+#     'api.authentication.BasicAuthentication'
+# ]
+
+# if DEBUG:
+#     auth_classes = [
+#         'api.authentication.BasicAuthentication'
+#     ]
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': auth_classes,
+
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.authentication.IsAuthenticatedOrReadOnly', #GET
+       
+#     ]
+# }
